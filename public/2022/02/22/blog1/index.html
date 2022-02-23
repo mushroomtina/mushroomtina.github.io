@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>blog1 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="leetcode刷题笔记二分查找如果 nums[mid] &lt; target ，由于数组有序，mid 以及 mid 左边的所有元素都小于 target，目标元素一定在区间 [mid + 1, right] 里，因此设置 left &#x3D; mid + 1。 ref： https:&#x2F;&#x2F;ojeveryday.github.io&#x2F;AlgoWiki&#x2F;#&#x2F;BinarySearch&#x2F;README?id&#x3D;%e4%">
+<meta property="og:type" content="article">
+<meta property="og:title" content="blog1">
+<meta property="og:url" content="http://example.com/2022/02/22/blog1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="leetcode刷题笔记二分查找如果 nums[mid] &lt; target ，由于数组有序，mid 以及 mid 左边的所有元素都小于 target，目标元素一定在区间 [mid + 1, right] 里，因此设置 left &#x3D; mid + 1。 ref： https:&#x2F;&#x2F;ojeveryday.github.io&#x2F;AlgoWiki&#x2F;#&#x2F;BinarySearch&#x2F;README?id&#x3D;%e4%">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-02-23T03:47:40.000Z">
+<meta property="article:modified_time" content="2022-02-23T03:50:50.252Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-blog1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/02/22/blog1/" class="article-date">
+  <time datetime="2022-02-23T03:47:40.000Z" itemprop="datePublished">2022-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      blog1
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode刷题笔记"><a href="#leetcode刷题笔记" class="headerlink" title="leetcode刷题笔记"></a>leetcode刷题笔记</h1><h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><p>如果 nums[mid] &lt; target ，由于数组有序，mid 以及 mid 左边的所有元素都小于 target，目标元素一定在区间 [mid + 1, right] 里，因此设置 left = mid + 1。</p>
+<h3 id="ref：-https-ojeveryday-github-io-AlgoWiki-BinarySearch-README-id-e4-ba-8c-e5-88-86-e6-9f-a5-e6-89-be-e6-a8-a1-e6-9d-bf-e4-b8-80"><a href="#ref：-https-ojeveryday-github-io-AlgoWiki-BinarySearch-README-id-e4-ba-8c-e5-88-86-e6-9f-a5-e6-89-be-e6-a8-a1-e6-9d-bf-e4-b8-80" class="headerlink" title="ref： https://ojeveryday.github.io/AlgoWiki/#/BinarySearch/README?id=%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be%e6%a8%a1%e6%9d%bf%e4%b8%80"></a>ref： <a target="_blank" rel="noopener" href="https://ojeveryday.github.io/AlgoWiki/#/BinarySearch/README?id=%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be%e6%a8%a1%e6%9d%bf%e4%b8%80">https://ojeveryday.github.io/AlgoWiki/#/BinarySearch/README?id=%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be%e6%a8%a1%e6%9d%bf%e4%b8%80</a></h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/02/22/blog1/" data-id="ckzz0rofn0000e8updl30fr0u" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/02/22/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/22/blog1/">blog1</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/22/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
