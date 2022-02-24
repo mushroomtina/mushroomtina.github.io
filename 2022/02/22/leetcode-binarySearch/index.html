@@ -166,7 +166,15 @@
 </ol>
 <p>例题：</p>
 <ol>
-<li>leetcode35. Search Insert Position: <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/search-insert-position/" >https://leetcode.com/problems/search-insert-position/<i class="fas fa-external-link-alt"></i></a></li>
+<li><p>leetcode35. Search Insert Position: <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/search-insert-position/" >https://leetcode.com/problems/search-insert-position/<i class="fas fa-external-link-alt"></i></a></p>
+<p> 注意考虑到数组的最后一个元素的位置的下一个位置是目标索引的情况。解决方案：</p>
+<ol>
+<li>加一个特判。即 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if nums[n - 1] &lt; target:</span><br><span class="line">    return n</span><br></pre></td></tr></table></figure></li>
+<li>设置右边界为len。即 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left, right = 0, n</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>leetcode69. Sqrt(x): <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sqrtx/" >https://leetcode.com/problems/sqrtx/<i class="fas fa-external-link-alt"></i></a></p>
+</li>
 </ol>
 <p>注意事项：</p>
 <ol>
