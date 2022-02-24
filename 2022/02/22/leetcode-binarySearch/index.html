@@ -9,7 +9,7 @@
     
     <title>
         
-            leetcode-binarySearch |
+            刷题笔记：二分查找binarySearch |
         
         Keep Theme
     </title>
@@ -118,7 +118,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">leetcode-binarySearch</span>
+            <span class="title-hover-animation">刷题笔记：二分查找binarySearch</span>
         </div>
 
         
@@ -155,7 +155,28 @@
         
 
         <div class="article-content markdown-body">
-            
+            <p>Ref: <a class="link"   target="_blank" rel="noopener" href="https://ojeveryday.github.io/AlgoWiki/#/BinarySearch/README?id=%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be%e6%a8%a1%e6%9d%bf%e4%b8%80" >https://ojeveryday.github.io/AlgoWiki/#/BinarySearch/README?id=%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be%e6%a8%a1%e6%9d%bf%e4%b8%80<i class="fas fa-external-link-alt"></i></a></p>
+<p>解题模板：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def search(nums: List[int], left: int, right: int, target: int) -&gt; int:</span><br><span class="line">    while left &lt; right:</span><br><span class="line">        # 选择中位数时下取整</span><br><span class="line">        mid = left + (right - left) // 2</span><br><span class="line">        if mid小于目标条件:</span><br><span class="line">            # 下一轮搜索区间是 [mid + 1, right]</span><br><span class="line">            left = mid + 1</span><br><span class="line">        else:</span><br><span class="line">            # 下一轮搜索区间是 [left, mid]</span><br><span class="line">            right = mid</span><br><span class="line">    # 退出循环的时候，程序只剩下一个元素没有看到。</span><br><span class="line">    # 视情况，是否需要单独判断 left（或者 right）这个下标的元素是否符合题意</span><br></pre></td></tr></table></figure>
+<p>核心要点:</p>
+<ol>
+<li>排除掉不满足条件的区间。即缩小[left, right]区间，使得区间内的值满足条件，即可求解。</li>
+<li>求mid值时，需要根据排除条件在上界或下界来调整是向上还是向下取整。比如，如果大于目标值的区间需要排除掉，则应该向上取整，即mid &#x3D; left + (right - left + 1) &#x2F;&#x2F; 2。反之，如果小于目标值的需要排除掉，则应该向下取整，即mid &#x3D; left + (right - left) &#x2F;&#x2F; 2。</li>
+<li>退出循环时，必满足left &#x3D;&#x3D; right。如果题目说目标值必存在，则可直接返回left。如果目标值不一定存在，则需要对left进行判断。</li>
+</ol>
+<p>例题：</p>
+<ol>
+<li>leetcode35. Search Insert Position: <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/search-insert-position/" >https://leetcode.com/problems/search-insert-position/<i class="fas fa-external-link-alt"></i></a></li>
+</ol>
+<p>注意事项：</p>
+<ol>
+<li>注意overflow的问题。Python 使用 BigInteger，所以不用担心溢出，但还是推荐使用如下形式。<ul>
+<li>mid &#x3D; (left + right) &#x2F; 2; 在 left + right 整形溢出的时候，mid 会变成负数，回避这个问题的办法是写成 int mid &#x3D; left + (right - left) &#x2F; 2;</li>
+<li>mid * mid &gt; x； mid * mid可能存在溢出，写成mid &gt; x &#x2F;&#x2F; mid来替代。</li>
+</ul>
+</li>
+</ol>
+
         </div>
 
         
