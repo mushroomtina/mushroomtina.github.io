@@ -30,12 +30,80 @@
 
 
 <body>
-<div class="progress-bar-container">
-    
+.progress-bar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: $z-index-9;
 
-    
-</div>
+  if (hexo-config('pjax.enable') == true) {
 
+    .pjax-progress-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 0;
+      background: var(--pjax-progress-bar-color);
+      visibility: hidden;
+      opacity: 0;
+      z-index: $z-index-8;
+      transition-t("width", "0", "0.1", "linear");
+
+
+      &.show {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+
+    .pjax-progress-icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: $z-index-8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 6px 0 0;
+      visibility: hidden;
+      font-size: 1.1rem;
+      color: var(--default-text-color);
+
+      +keep-tablet() {
+        padding: 6px 5px 0 0;
+        font-size: 1rem;
+      }
+
+      &.show {
+        visibility: visible;
+      }
+    }
+
+  }
+
+  if (hexo-config('style.scroll.progress_bar.enable') == true) {
+
+    .scroll-progress-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: $scroll-progress-bar-height;
+      visibility: hidden;
+      z-index: $z-index-7;
+      background: var(--primary-color);
+      transition-t("width", "0", "0.1", "linear");
+
+      &.hide {
+        display: none !important;
+      }
+    }
+
+  }
+}
 
 <main class="page-container">
 
@@ -44,68 +112,313 @@
     <div class="page-main-content">
 
         <div class="page-main-content-top">
-            <header class="header-wrapper">
+            $logo-title-font-size = 2rem;
+$pc-search-icon-font-size = 1.5rem;
+$menu-bar-line-height = 2.5px;
+$logo-image-box-width = 46px;
 
-    <div class="header-content">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                Keep Theme
-            </a>
-        </div>
+.header-wrapper {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background-color);
+  padding-top: $scroll-progress-bar-height;
 
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
-                                HOME
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
-                                ARCHIVES
-                            </a>
-                        </li>
-                    
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+  hover-style(false, 0, 0);
 
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">HOME</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">ARCHIVES</a>
-                </li>
-            
-        </ul>
-    </div>
+  .header-content {
+    position: relative;
+    height: 100%;
+    width: $main-content-width;
+    max-width: $content-max-width;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: $z-index-5;
 
-    <div class="window-mask"></div>
 
-</header>
+    &.has-first-screen {
+      max-width: $content-max-width * 1.2;
+    }
 
+    +keep-tablet() {
+      width: $main-content-width-tablet;
+    }
+
+    +keep-mobile() {
+      width: $main-content-width-mobile;
+    }
+
+    .left {
+      display: flex;
+      align-items: center;
+      transition-t("transform", "0", "0.2", "linear");
+
+      .header-shrink & {
+        transform: scale(0.72);
+        transform-origin: left;
+      }
+
+
+      if (hexo-config('base_info.logo_img') && hexo-config('base_info.logo_img') != '') {
+        .logo-image {
+          width: $logo-image-box-width;
+          height: $logo-image-box-width;
+          margin-right: 8px;
+
+
+          +keep-tablet() {
+            width: $logo-image-box-width * 0.9;
+            height: $logo-image-box-width * 0.9;
+          }
+
+          +keep-mobile() {
+            width: $logo-image-box-width * 0.8;
+            height: $logo-image-box-width * 0.8;
+          }
+
+          img {
+            border-radius: 6px;
+            width: 100%;
+          }
+        }
+
+      }
+
+      .logo-title {
+        font-size: $logo-title-font-size;
+        font-weight: bold;
+        letter-spacing: 1px;
+        line-height: 1;
+        color: var(--first-text-color);
+
+        +keep-tablet() {
+          font-size: $logo-title-font-size * 0.9;
+        }
+
+        +keep-mobile() {
+          font-size: $logo-title-font-size * 0.8;
+        }
+      }
+
+    }
+
+
+    .right {
+
+      .pc {
+
+        .menu-list {
+          display: flex;
+          align-items: center;
+
+          +keep-tablet() {
+            display: none;
+          }
+
+
+          .menu-item {
+            float: left;
+            position: relative;
+            margin-left: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            color: var(--default-text-color);
+
+            &:first-child {
+              margin-left: 0;
+            }
+
+
+            a:hover, .active {
+
+              &::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                width: 100%;
+                height: 2px;
+                transform: translateX(-50%);
+                background: var(--primary-color);
+                transition-t("transform, bottom", "0, 0", "0.2, 0.2", "linear, linear");
+
+                .header-shrink & {
+                  bottom: -($header-shrink-height / 2 - 12);
+                }
+              }
+            }
+
+            &.search {
+              font-size: $pc-search-icon-font-size;
+              margin-left: 26px;
+
+              i {
+                color: var(--default-text-color);
+              }
+
+            }
+          }
+
+
+        }
+
+      }
+
+
+      .mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .icon-item {
+          display: none;
+          position: relative;
+          cursor: pointer;
+          font-size: 18px;
+          margin-left: 12px;
+          width: 20px;
+          height: 20px;
+          color: var(--default-text-color);
+
+          i {
+            color: var(--default-text-color);
+          }
+
+          &:first-child {
+            margin-left: 0;
+          }
+
+          +keep-tablet() {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+
+        .menu-bar {
+
+          .menu-bar-middle {
+            width: 18px;
+            height: $menu-bar-line-height;
+            position: relative;
+            background: var(--default-text-color);
+
+            .header-drawer-show & {
+              background: transparent;
+            }
+
+
+            &::before, &::after {
+              content: '';
+              position: absolute;
+              left: 0;
+              width: 100%;
+              height: $menu-bar-line-height;
+              background: var(--default-text-color);
+              transition-t("transform", "0", "0.38", "ease");
+            }
+
+
+            &::before {
+              top: -6px;
+
+              .header-drawer-show & {
+                transform: translateY(6px) rotate(45deg);
+              }
+            }
+
+
+            &::after {
+              bottom: -6px;
+
+              .header-drawer-show & {
+                transform: translateY(-6px) rotate(-45deg);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  .header-drawer {
+    width: 100%;
+    padding: $header-height 0 20px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    z-index: $z-index-2;
+    background: var(--background-color);
+    transition-t("transform", "0", "0.38", "ease");
+
+    .header-drawer-show & {
+      transform: scaleY(1);
+    }
+
+    .drawer-menu-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      .drawer-menu-item {
+        font-size: 1rem;
+        margin: 6px 0;
+        height: 38px;
+
+        a {
+          padding: 6px 20px;
+          border-radius: 20px;
+          color: var(--default-text-color);
+
+          &:hover {
+            color: var(--second-text-color);
+            border: 1px solid var(--default-text-color);
+          }
+
+
+          &.active {
+            border: 1px solid var(--default-text-color);
+            color: var(--second-text-color);
+          }
+        }
+
+
+      }
+    }
+  }
+
+
+  .window-mask {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: $z-index-1;
+    visibility: hidden;
+    opacity: 0;
+    transition-t("transform, opacity", "0, 0", "0.38, 0.38", "ease, ease");
+
+    .header-drawer-show & {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+}
+
+.header-drawer-show {
+  overflow: hidden;
+}
 
         </div>
 
@@ -134,20 +447,65 @@
                         
                     </div>
                     <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-02-22 23:27:07</span>
-        <span class="mobile">2022-02-22 23:27</span>
-    </span>
-    
-    
+                        .article-meta-info {
+  font-size: 0.8rem;
+  color: var(--third-text-color);
 
-    
-    
-    
-    
-</div>
+  .article-meta-item {
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .article-date {
+
+    .mobile {
+      display: none;
+    }
+
+    +keep-tablet() {
+      .pc {
+        display: none;
+      }
+
+      .mobile {
+        display: inline;
+      }
+    }
+
+  }
+
+
+  .article-tags, .article-categories {
+    display: inline;
+
+    ul, li {
+      display: inline;
+    }
+
+    a {
+      color: var(--third-text-color);
+
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  .article-tags {
+    +keep-tablet() {
+      display: none;
+    }
+  }
+
+  .article-min2read, .article-wordcount {
+    +keep-mobile() {
+      display: none;
+    }
+  }
+}
 
                     </div>
                 </div>
@@ -156,16 +514,18 @@
 
         <div class="article-content markdown-body">
             <p>Ref: <a class="link"   target="_blank" rel="noopener" href="https://ojeveryday.github.io/AlgoWiki/#/BinarySearch/README?id=%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be%e6%a8%a1%e6%9d%bf%e4%b8%80" >https://ojeveryday.github.io/AlgoWiki/#/BinarySearch/README?id=%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be%e6%a8%a1%e6%9d%bf%e4%b8%80<i class="fas fa-external-link-alt"></i></a></p>
-<p>解题模板：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def search(nums: List[int], left: int, right: int, target: int) -&gt; int:</span><br><span class="line">    while left &lt; right:</span><br><span class="line">        # 选择中位数时下取整</span><br><span class="line">        mid = left + (right - left) // 2</span><br><span class="line">        if mid小于目标条件:</span><br><span class="line">            # 下一轮搜索区间是 [mid + 1, right]</span><br><span class="line">            left = mid + 1</span><br><span class="line">        else:</span><br><span class="line">            # 下一轮搜索区间是 [left, mid]</span><br><span class="line">            right = mid</span><br><span class="line">    # 退出循环的时候，程序只剩下一个元素没有看到。</span><br><span class="line">    # 视情况，是否需要单独判断 left（或者 right）这个下标的元素是否符合题意</span><br></pre></td></tr></table></figure>
+<h1 id="可解决的问题类型"><a href="#可解决的问题类型" class="headerlink" title="可解决的问题类型"></a>可解决的问题类型</h1><ol>
+<li>在有序数组中查找元素</li>
+<li>确定一个有范围的整数</li>
+</ol>
+<h1 id="解题模板"><a href="#解题模板" class="headerlink" title="解题模板"></a>解题模板</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def search(nums: List[int], left: int, right: int, target: int) -&gt; int:</span><br><span class="line">    while left &lt; right:</span><br><span class="line">        # 选择中位数时下取整</span><br><span class="line">        mid = left + (right - left) // 2</span><br><span class="line">        if mid小于目标条件:</span><br><span class="line">            # 下一轮搜索区间是 [mid + 1, right]</span><br><span class="line">            left = mid + 1</span><br><span class="line">        else:</span><br><span class="line">            # 下一轮搜索区间是 [left, mid]</span><br><span class="line">            right = mid</span><br><span class="line">    # 退出循环的时候，程序只剩下一个元素没有看到。</span><br><span class="line">    # 视情况，是否需要单独判断 left（或者 right）这个下标的元素是否符合题意</span><br></pre></td></tr></table></figure>
 <p>核心要点:</p>
 <ol>
 <li>排除掉不满足条件的区间。即缩小[left, right]区间，使得区间内的值满足条件，即可求解。</li>
 <li>求mid值时，需要根据排除条件在上界或下界来调整是向上还是向下取整。比如，如果大于目标值的区间需要排除掉，则应该向上取整，即mid &#x3D; left + (right - left + 1) &#x2F;&#x2F; 2。反之，如果小于目标值的需要排除掉，则应该向下取整，即mid &#x3D; left + (right - left) &#x2F;&#x2F; 2。</li>
 <li>退出循环时，必满足left &#x3D;&#x3D; right。如果题目说目标值必存在，则可直接返回left。如果目标值不一定存在，则需要对left进行判断。</li>
 </ol>
-<p>例题：</p>
-<ol>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><ol>
 <li><p>leetcode35. Search Insert Position: <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/search-insert-position/" >https://leetcode.com/problems/search-insert-position/<i class="fas fa-external-link-alt"></i></a></p>
 <p> 注意考虑到数组的最后一个元素的位置的下一个位置是目标索引的情况。解决方案：</p>
 <ol>
@@ -175,12 +535,22 @@
 </li>
 <li><p>leetcode69. Sqrt(x): <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sqrtx/" >https://leetcode.com/problems/sqrtx/<i class="fas fa-external-link-alt"></i></a></p>
 </li>
+<li><p>leetcode875. Koko Eating Bananas: <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/koko-eating-bananas/" >https://leetcode.com/problems/koko-eating-bananas/<i class="fas fa-external-link-alt"></i></a></p>
+<ul>
+<li>由于速度是一个有范围的整数，因此可以使用二分查找法解决这个问题。而确定速度不是一个表达式能完成的，需要封装成一个函数，作为判断mid值的目标函数，目标函数值大于h的mid值不符合题意。</li>
+<li>搜索的是速度。因为题目限制了珂珂一个小时之内只能选择一堆香蕉吃，因此速度最大值就是这几堆香蕉中，数量最多的那一堆。速度的最小值是 1。（这里注意最小值不能为min(piles), 否则过不了piles&#x3D;[312884470]且h&#x3D;312884469的极端情况）</li>
+</ul>
+</li>
 </ol>
-<p>注意事项：</p>
-<ol>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><ol>
 <li>注意overflow的问题。Python 使用 BigInteger，所以不用担心溢出，但还是推荐使用如下形式。<ul>
 <li>mid &#x3D; (left + right) &#x2F; 2; 在 left + right 整形溢出的时候，mid 会变成负数，回避这个问题的办法是写成 int mid &#x3D; left + (right - left) &#x2F; 2;</li>
 <li>mid * mid &gt; x； mid * mid可能存在溢出，写成mid &gt; x &#x2F;&#x2F; mid来替代。</li>
+</ul>
+</li>
+<li>x整除y向上取整的写法为什么第二种是错误的？<ul>
+<li>(x + y - 1) &#x2F;&#x2F; y</li>
+<li>x &#x2F;&#x2F; y + 1</li>
 </ul>
 </li>
 </ol>
@@ -239,91 +609,253 @@
         </div>
 
         <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
-            
-              <span>2020</span>
-              -
-            
-            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Keep Team</a>
-        </div>
-        
-        <div class="theme-info info-item">
-            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
-        </div>
-        
-        
-    </div>
-</footer>
+            .footer {
+  font-size: 1rem;
+  color: var(--third-text-color);
+
+
+  a {
+    color: var(--third-text-color);
+
+
+    &:hover {
+      color: var(--primary-color);
+
+    }
+  }
+
+  .info-container {
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  .info-item {
+    margin: 5px 0;
+  }
+
+  .icon-animate {
+    animation: icon-animate 1.2s ease-in-out infinite;
+  }
+
+}
 
         </div>
     </div>
 
     
         <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
-        
+            $li-border-radius = 5px;
+$li-margin-bottom = 12px;
 
-        <!-- go comment -->
-        
-    </ul>
-</div>
+.post-tools-container {
+
+  .tools-list {
+
+    li {
+      cursor: pointer;
+      width: $post-tool-button-width;
+      height: $post-tool-button-width;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: $li-margin-bottom;
+      background: var(--background-color);
+      color: var(--default-text-color);
+
+      i {
+        color: var(--default-text-color);
+      }
+
+      &:hover {
+        background: var(--primary-color);
+        color: var(--background-color);
+
+        i {
+          color: var(--background-color);
+        }
+      }
+
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+
+      hover-style(true, 1.06, 1.06);
+
+      &.page-aside-toggle {
+        display: none;
+
+        +keep-tablet() {
+          display: none !important;
+        }
+      }
+    }
+  }
+
+}
 
         </div>
     
 
     <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+        $tools-item-width = 32px;
+$tools-item-font-size = 1.1rem;
+$tools-item-border-radius = 1px;
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
 
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+.side-tools-container {
+  position: relative;
 
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
+  .tools-item {
+    width: $tools-item-width;
+    height: $tools-item-width;
+    font-size: $tools-item-font-size;
+    margin-bottom: 3px;
+    cursor: pointer;
+    border-right: none;
+    border-radius: $tools-item-border-radius;
+    box-shadow: 1px 1px 3px var(--shadow-color);
+    color: var(--default-text-color);
+    background: var(--background-color);
 
-        <!-- rss -->
-        
+    i {
+      color: var(--default-text-color);
+    }
 
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
+    &:hover {
+      color: var(--background-color);
+      background: var(--primary-color);
+      box-shadow: 2px 2px 6px var(--shadow-color);
 
-        <li class="tools-item tool-scroll-to-bottom flex-center">
-            <i class="fas fa-arrow-down"></i>
-        </li>
-    </ul>
+      i {
+        color: var(--background-color);
+      }
+    }
 
-    <ul class="exposed-tools-list">
-        <li class="tools-item tool-toggle-show flex-center">
-            <i class="fas fa-cog fa-spin"></i>
-        </li>
-        
-    </ul>
-</div>
+    +keep-tablet() {
+      width: $tools-item-width * 0.9;
+      height: $tools-item-width * 0.9;
+      font-size: $tools-item-font-size * 0.9;
+      margin-bottom: 2px;
+    }
+
+    &.rss {
+
+      a {
+        border-radius: $tools-item-border-radius;
+        width: 100%;
+        height: 100%;
+
+        &:hover {
+          color: var(--background-color);
+          background: var(--primary-color);
+          box-shadow: 2px 2px 6px var(--shadow-color);
+        }
+      }
+    }
+  }
+
+
+  .side-tools-list {
+    opacity: 0;
+    transform: translateX(100%);
+    transition-t("transform, opacity", "0, 0", "0.2, 0.2", "linear, linear");
+
+    .tool-expand-width {
+      +keep-tablet() {
+        display: none;
+      }
+    }
+
+
+    &.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+
+  .exposed-tools-list {
+
+    if (hexo-config('style.scroll.percent.enable') == true) {
+      .tool-scroll-to-top {
+        display: none;
+
+        &.show {
+          display: flex;
+        }
+
+        &:hover {
+
+          .percent {
+            display: none;
+          }
+
+          .arrow-up {
+            display: flex;
+          }
+
+        }
+
+        .arrow-up {
+          display: none;
+        }
+
+        .percent {
+          display: flex;
+          font-size: 1rem;
+        }
+
+      }
+
+    }
+  }
+}
 
     </div>
 
     
 
-    <div class="image-viewer-container">
-    <img src="">
-</div>
+    .image-viewer-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0);
+  visibility: hidden;
+  z-index: $z-index-8;
+  padding: 6%;
+  box-sizing: border-box;
+  transition-t("visibility, background", "0, 0", "0.3, 0.3", "ease, ease");
+
+  &.active {
+    background: rgba(0, 0, 0, 0.5);
+    visibility: visible;
+
+    img {
+      cursor: zoom-out;
+      transform: scale(1);
+      padding: 2px;
+      background: var(--background-color);
+    }
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    transform: scale(0);
+    transition-t("transform", "0", "0.3", "ease");
+  }
+}
+
+
 
 
     
