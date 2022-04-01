@@ -155,7 +155,38 @@
         
 
         <div class="article-content markdown-body">
-            
+            <h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a class="link"   target="_blank" rel="noopener" href="https://dev.to/deepu105/demystifying-memory-management-in-modern-programming-languages-ddd" >https://dev.to/deepu105/demystifying-memory-management-in-modern-programming-languages-ddd<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><p>作用：管理计算机硬件、软件和各种资源（CPU、内存等）。</p>
+<h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><p>主存：RAM(Random Access Memory)。</p>
+<p>内存分布：</p>
+<p>stack memory：用于静态内存分配。</p>
+<pre><code>特点: 
+* LIFO，存取快，因为无需lookup。
+* 要求数据是有限且静态的（its size is known at compilation time)。
+* 多线程应用，每个线程拥有一块独立的栈空间。
+* 栈内存有限，内存超出会报stack overflow。
+
+保存的数据类型：local variables(value types or primitives, primitive constants), pointers and function frames.
+
+内存管理: 管理简单，由OS完成。
+</code></pre>
+<p>heap memory：用于动态内存分配。</p>
+<pre><code>特点:
+* 查找数据需要通过pointer，效率比stack低。
+* 能存比stack更多的数据。
+* 可以存dynamic size的数据。
+* 不同线程共享堆内存。
+* 当使用的内存超出堆内存上限，会报Out of Memory (OOM)。
+
+保存的数据类型：global variables, reference types like objects, strings, maps, and other complex data structures.
+
+内存管理：管理复杂，有几种管理方式或自动内存管理机制来分配和释放。
+    1. Manual memory management：如C++，由程序员通过malloc，new等分配和释放。或利用智能指针。
+    2. Garbage collection(GC)：分为
+        * Mark &amp; Sweep GC: JVM(Java/Scala/Groovy/Kotlin), C#, Ruby, JavaScript, Golang。
+        * Reference counting GC: 每个对象有一个引用计数。当计数为零时会被清除。（但无法处理循环引用的情况？？？）例如Python, PHP, Perl。
+</code></pre>
+
         </div>
 
         
