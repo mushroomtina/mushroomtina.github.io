@@ -9,7 +9,7 @@
     
     <title>
         
-            Work Note |
+            Coding Note |
         
         Keep Theme
     </title>
@@ -118,7 +118,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Work Note</span>
+            <span class="title-hover-animation">Coding Note</span>
         </div>
 
         
@@ -190,6 +190,24 @@
 <li>检查是否有设置代理。执行<code>unset http_proxy; unset https_proxy</code>。</li>
 </ol>
 </li>
+<li><p><code>Using namespace std;</code> is considered to be a bad practice：<a class="link"   target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1452721/why-is-using-namespace-std-considered-bad-practice" >https://stackoverflow.com/questions/1452721/why-is-using-namespace-std-considered-bad-practice<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>git patch&#x2F;diff:</p>
+<p> <code>git format-patch -1 HEAD</code>: -1 means the number of commit</p>
+<p> commit 文件中的部分代码：<br> <code>git add --patch file.cc</code> and type y&#x2F;n to decide if commit that chunk or not.</p>
+</li>
+<li><p>静态&#x2F;动态打包和调用: <a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/52php/p/5681711.html" >https://www.cnblogs.com/52php/p/5681711.html<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>python资源清理：</p>
+<p>try…finally完成运行后资源的操作，通过重写__enter_和__exit__来完成进入推出的资源准备和清理，然后通过with语句来自动调用这两个函数。</p>
+</li>
+<li><p>conda 环境常用命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove --name &lt;myenv&gt; --all</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>singleton不能通过make_shared实例化对象。因为make_shared首先尝试去new一个新对象，然后构造shared_ptr对象。但是singleton类的构造函数是私有的，make_shared不是他的friend。<a class="link"   target="_blank" rel="noopener" href="https://stackoverflow.com/questions/66201729/correct-way-to-implement-singleton-with-shared-pointer" >https://stackoverflow.com/questions/66201729/correct-way-to-implement-singleton-with-shared-pointer<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>c++ timer:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;chrono&gt;</span><br><span class="line"></span><br><span class="line">std::chrono::time_point&lt;std::chrono::steady_clock&gt; start = std::chrono::steady_clock::now();</span><br><span class="line">std::chrono::time_point&lt;std::chrono::steady_clock&gt; end = std::chrono::steady_clock::now();</span><br><span class="line"></span><br><span class="line">auto total_time_in_sec = std::chrono::duration_cast&lt;std::chrono::seconds&gt;(end-start).count();</span><br></pre></td></tr></table></figure></li>
 </ol>
 
         </div>
