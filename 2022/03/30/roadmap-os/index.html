@@ -9,7 +9,7 @@
     
     <title>
         
-            Work Note |
+            roadmap-os |
         
         Keep Theme
     </title>
@@ -118,7 +118,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Work Note</span>
+            <span class="title-hover-animation">roadmap-os</span>
         </div>
 
         
@@ -137,8 +137,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-03-02 00:05:10</span>
-        <span class="mobile">2022-03-02 00:05</span>
+        <span class="pc">2022-03-30 17:38:13</span>
+        <span class="mobile">2022-03-30 17:38</span>
     </span>
     
     
@@ -155,43 +155,7 @@
         
 
         <div class="article-content markdown-body">
-            <p>本篇博文用于记录工作学习过程中遇到的错误和容易忽略的问题。</p>
-<ol>
-<li><p>类成员变量通常私有成员默认定义成xxx_下划线结尾的格式。类外访问私有成员变量，可以通过定义public函数的方式实现，如下，在类外加锁。</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class A &#123;</span><br><span class="line">    public:</span><br><span class="line">    void Lock() &#123; lock_.lock(); &#125;</span><br><span class="line">    void Unlock() &#123; lock_.unlock(); &#125;</span><br><span class="line"></span><br><span class="line">    private:</span><br><span class="line">    std::mutex lock_;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    A a;</span><br><span class="line">    a.Lock()</span><br><span class="line">    // do something.</span><br><span class="line">    a.Unlock();</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>清除目录下(如<code>/tmp</code>)20天前的文件，可以通过下面一条命令完成。</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /tmp -mtime +21 -name &quot;*.*&quot; -exec rm -Rf &#123;&#125; \;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>性能相关</p>
-<p> 使用vector时，如果知道vector的size，可以先reserve预分配内存，来避免随着vector不断添加元素而reallocate内存的现象。从而影响性能。</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vector.reserve(size)</span><br><span class="line">for (int i = 0 ; i &lt; vector.capability(); i++ ) &#123;</span><br><span class="line">    // do something.</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>debug coredump记录</p>
-<p> gdb调试core dump步骤：</p>
-<ol>
-<li>编译debug包，并安装。</li>
-<li>通过gdb执行用例。 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ gdb --args python train.py</span><br><span class="line">(gdb) run</span><br><span class="line">(gdb) bt</span><br></pre></td></tr></table></figure>
- 注意：在gdb运行过程中，有可能会触发SIG32状态导致进程结束（报错为“Program received signal SIG32, Real-time event 32)。解决方案是在gdb窗口里敲入命令<code>handle SIG32 nostop</code>，来设置信号响应方式为nostop。</li>
-</ol>
-<p> core dump可能的产生原因：</p>
-<ol>
-<li>数组index访问越界。</li>
-<li>裸指针被其他shared_ptr持有，导致double free</li>
-</ol>
-</li>
-<li><p>struct元素值更新失败？</p>
-<p> struct 是不是不允许update？初始化的时候就分配内存，不可更改</p>
-</li>
-<li><p>gRPC错误码14（failed to connect to all addresses)问题排查:</p>
-<ol>
-<li>检查grpc通信的目标地址及端口与实际是否相符。如client侧发起通信时所指定的ip和端口号是否与server实际ip及端口号一致。</li>
-<li>检查目标机器服务是否正常工作。如server是否正常开启。</li>
-<li>检查是否有设置代理。执行<code>unset http_proxy; unset https_proxy</code>。</li>
-</ol>
-</li>
-</ol>
-
+            
         </div>
 
         
@@ -201,29 +165,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/03/09/memory-management/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">memory management</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/02/23/hexo-cmd/"
+                           href="/2022/03/30/roadmap-network/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">hexo写博客步骤和相关问题</span>
+                                <span class="post-nav-title-item">roadmap-network</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
