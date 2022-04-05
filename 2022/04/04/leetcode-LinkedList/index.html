@@ -9,7 +9,7 @@
     
     <title>
         
-            Archive |
+            leetcode-LinkedList |
         
         Keep Theme
     </title>
@@ -67,7 +67,7 @@
                         </li>
                     
                         <li class="menu-item">
-                            <a class="active"
+                            <a class=""
                                href="/archives"
                             >
                                 ARCHIVES
@@ -95,7 +95,7 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class="active"
+                    <a class=""
                        href="/archives">ARCHIVES</a>
                 </li>
             
@@ -115,101 +115,94 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="archive-container ">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">leetcode-LinkedList</span>
+        </div>
+
         
-<div class="archive-list-container">
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Keep Team</span>
+                        
+                            <span class="author-label">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-04-04 22:24:53</span>
+        <span class="mobile">2022-04-04 22:24</span>
+    </span>
     
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2022</span>
-                <span class="archive-year-post-count">[11]</span>
-            </div>
-            <ul class="article-list">
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/04/04/leetcode-LinkedList/"
-                        >leetcode-LinkedList</a>
-                        <span class="article-date">04-04</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/04/04/leetcode-dp/"
-                        >leetcode-dp</a>
-                        <span class="article-date">04-04</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/04/04/c-note/"
-                        >c++ note</a>
-                        <span class="article-date">04-04</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/03/30/roadmap-os/"
-                        >roadmap-os</a>
-                        <span class="article-date">03-30</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/03/30/roadmap-network/"
-                        >roadmap-network</a>
-                        <span class="article-date">03-30</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/03/14/leetcode-UnionFind/"
-                        >leetcode-UnionFind</a>
-                        <span class="article-date">03-14</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/03/09/memory-management/"
-                        >memory management</a>
-                        <span class="article-date">03-09</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/03/02/Work-Note/"
-                        >Coding Note</a>
-                        <span class="article-date">03-02</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/02/23/hexo-cmd/"
-                        >hexo写博客步骤和相关问题</a>
-                        <span class="article-date">02-23</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/02/22/leetcode-binarySearch/"
-                        >刷题笔记：二分查找binarySearch</a>
-                        <span class="article-date">02-22</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/02/22/hello-world/"
-                        >Hello World</a>
-                        <span class="article-date">02-22</span>
-                    </li>
-                
-            </ul>
-        </section>
+    
+
+    
+    
+    
     
 </div>
 
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><ol>
+<li><p>例题：1721. Swapping Nodes in a Linked List：<a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/swapping-nodes-in-a-linked-list/" >https://leetcode.com/problems/swapping-nodes-in-a-linked-list/<i class="fas fa-external-link-alt"></i></a></p>
+<p> 交换从前往后数的第k个node的值和从后往前数的第k个node的值。可以采用双指针方法。</p>
+<ol>
+<li>分别定义两个指针left node和right node。</li>
+<li>找位置：左节点可以通过从链表头右移k次直接得到。右节点可以通过定义一个temp节点，将temp节点和curr节点都指向链表头，再让temp走k步；接着让temp和curr节点一起向右移，当temp抵达链表尾时，curr指向的位置即为目标右结点位置。</li>
+<li>找到目标位置后，直接交换lnode和rnode的值。</li>
+</ol>
+<p> 优化: 上面2步骤可以优化成只经历一次遍历得到。当右移k次找到lnode的位置的时候，lnode的位置相较head的位置正好落后k个节点。因此可以在这个时候，开始找rnode。</p>
+<p> 解答如下:<br> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* swapNodes(ListNode* head, int k) &#123;</span><br><span class="line">        ListNode* left = head;</span><br><span class="line">        ListNode* right = head;</span><br><span class="line">        ListNode* curr = head;</span><br><span class="line">        </span><br><span class="line">        int counter = 1;</span><br><span class="line">        while(curr!=NULL)&#123;</span><br><span class="line">            if (counter&lt;k)&#123;</span><br><span class="line">                left = left-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            if (counter&gt;k)&#123;</span><br><span class="line">                right = right-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            curr = curr-&gt;next;</span><br><span class="line">            counter++;</span><br><span class="line">        &#125;</span><br><span class="line">        //swap values</span><br><span class="line">        int temp = left-&gt;val;</span><br><span class="line">        left-&gt;val = right-&gt;val;</span><br><span class="line">        right-&gt;val = temp;</span><br><span class="line">        </span><br><span class="line">        return head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>例题1721. Swapping Nodes in a Linked List</p>
+<p> 注意不用判断height[lmax]和height[rmax]相等的情况。因为一次只能移动一侧，不论移动哪边，瓶颈都在未移动的lmax或rmax。</p>
+</li>
+</ol>
+
+        </div>
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/04/04/leetcode-dp/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">leetcode-dp</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
     </div>
 </div>
+
 
                 
             </div>
@@ -239,6 +232,19 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-bottom-side-tools">
